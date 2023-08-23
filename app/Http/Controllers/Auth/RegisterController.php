@@ -83,7 +83,7 @@ class RegisterController extends Controller
 
 
     return back()->withErrors([
-        'name' => 'Username or password is incorrect.',
+        'name' => 'Username / password / role is incorrect.',
     ]);
 }
 

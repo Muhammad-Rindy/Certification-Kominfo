@@ -6,42 +6,40 @@
             {{ session('success') }}
         </div>
     @endif
-    <p>Anda sudah mengisi data sebelumnya.</p>
-    <p>ID Pengguna: {{ $userId }}</p>
-    <!-- Tambahkan informasi atau tautan ke halaman lain sesuai kebutuhan -->
+    @if (count($errors) > 0)
+        <div class="alert alert-danger">
+            @foreach ($errors->all() as $error)
+                {{ $error }} <br />
+            @endforeach
+        </div>
+    @endif
 
-    @if ($users->count() > 0)
+    @if ($acc->count() > 0)
         <div class="row">
             <div class="container">
                 <h2 class="text-center my-5">Silahkan upload berkas disini</h2>
-
-                <div class="col-lg-8 mx-auto my-5">
-
-                    @if (count($errors) > 0)
-                        <div class="alert alert-danger">
-                            @foreach ($errors->all() as $error)
-                                {{ $error }} <br />
-                            @endforeach
-                        </div>
-                    @endif
-
+                <div class="container">
                     <form action="{{ route('upload.image') }}" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
 
                         <div class="form-group">
-                            <b>File Gambar</b><br />
-                            <input type="file" name="file">
+                            <h6 class="mt3">Unggah Berkas</h6>
+                            <input class="form-control" type="file" name="file">
                         </div>
 
-
-
-                        <input type="submit" value="Upload" class="btn btn-primary">
+                        <input type="submit" value="Upload" class="btn btn-primary mt-3 mb-3">
                     </form>
+                    <a href="/">Back</a>
                 </div>
             </div>
         </div>
+        </div>
+    @else
+        <div class="row">
+            <div class="container">
+                <h2 class="text-center mt-5 mb-5">Sorry, data anda belum di verifikasi</h2>
+            </div>
+            <a href="/">Back</a>
+        </div>
     @endif
-    @if ($acc->count() > 0)
-        <a href="storage/{{ $user_dokumen[0]->dokumen }}"><button class="btn btn-success">Download</button></a @endif
-
-    @endsection
+@endsection

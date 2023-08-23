@@ -39,7 +39,7 @@
                                 <div class="col-md-6">
                                     <select id="role" class="form-control @error('role') is-invalid @enderror"
                                         name="role" required>
-                                        <option value="warga">Warga</option>
+                                        <option value="warga" selected>Warga</option>
                                         <option value="pakrt">Pak RT</option>
                                         <option value="pakrw">Pak RW</option>
                                         <option value="staffkelurahan">Staff Kelurahan</option>

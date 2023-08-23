@@ -21,15 +21,9 @@ class WargaController extends Controller
      public function showForm($userId)
     {
 
-        $formData = User::where('id', $userId)->first();
+        $users = User::where('id', $userId)->get();
 
-        if ($formData) {
-            return redirect()->route('form.already_filled', ['userId' => auth()->id()]);
-        }
-
-
-
-        return view('warga', ['userId' => $userId]);
+        return view('warga', ['userId' => $users]);
     }
 
     public function submitForm(Request $request)
@@ -42,18 +36,21 @@ class WargaController extends Controller
             'umur' => $request->umur,
              ]);
 
-            return redirect()->route('warga.form')->with('success', 'Form submitted successfully.');
+            return redirect()->route('done.form')->with('success', 'Form submitted successfully.');
 
     }
-
+    public function doneForm()
+    {
+            return view('done');
+    }
 
     public function alreadyFilled($userId)
     {
          $users = DB::table('users')
             ->join('warga_form', 'warga_form.user_id', '=', 'users.id')
-            ->where('approved_by_rt', true)
-            ->where('approved_by_rw', true)
+            ->where('users.id', $userId)
             ->get();
+
         $acc = DB::table('users')
             ->join('warga_form', 'warga_form.user_id', '=', 'users.id')
             ->select('user_id', 'approved_kelurahan')

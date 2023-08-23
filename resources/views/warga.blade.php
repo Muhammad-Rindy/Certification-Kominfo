@@ -1,29 +1,33 @@
 @extends('layouts.app')
 
 @section('content')
-    <h2>Warga Form</h2>
     @if (session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
         </div>
     @endif
-    <form method="POST" action="{{ route('warga.submit_form') }}">
-        @csrf
-        <div class="form-group">
-            <label for="nama">Name</label>
-            <input type="text" name="nama" id="nama" class="form-control">
-        </div>
-        <!-- Add more form fields as needed -->
-        <div class="form-group">
-            <label for="alamat">Alamat</label>
-            <input type="text" name="alamat" id="alamat" class="form-control">
-        </div>
-        <!-- Add more form fields as needed -->
-        <div class="form-group">
-            <label for="umur">Umur</label>
-            <input type="text" name="umur" id="umur" class="form-control">
-        </div>
-        <!-- Add more form fields as needed -->
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    <div class="container">
+        <h1>Warga Form</h1>
+        <hr>
+        <form method="POST" action="{{ route('warga.submit_form') }}">
+            @csrf
+            <div class="form-group">
+                <label for="nama">Name</label>
+                <input type="text" name="nama" id="nama" class="form-control">
+            </div>
+            <!-- Add more form fields as needed -->
+            <div class="form-group">
+                <label for="alamat">Alamat</label>
+                <input type="text" name="alamat" id="alamat" class="form-control">
+            </div>
+            <!-- Add more form fields as needed -->
+            <div class="form-group">
+                <label for="umur">Umur</label>
+                <input type="text" name="umur" id="umur" class="form-control">
+            </div>
+            <!-- Add more form fields as needed -->
+            <button type="submit" class="btn btn-primary mt-3">Submit</button>
+        </form>
+        <a href="{{ route('form.already_filled') }}">Halaman Upload Dokumen</a>
+    </div>
 @endsection
