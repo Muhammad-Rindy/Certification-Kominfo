@@ -42,7 +42,6 @@
         </div>
     @endif
     @if ($acc->count() > 0)
-        <a href="{{ url('/print-lampiran') }}" target="_blank">Cetak Lampiran</a>
-    @endif
+        <a href="storage/{{ $user_dokumen[0]->dokumen }}"><button class="btn btn-success">Download</button></a @endif
 
-@endsection
+    @endsection

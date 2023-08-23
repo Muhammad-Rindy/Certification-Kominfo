@@ -60,7 +60,9 @@ class WargaController extends Controller
             ->where('approved_kelurahan', true)
             ->get();
 
-         return view('upload', ['userId' => $userId], compact('users', 'acc'));
+        $user_dokumen = DB::table('warga_form')->get();
+
+         return view('upload', ['userId' => $userId], compact('users', 'acc', 'user_dokumen'));
     }
 
     /**
