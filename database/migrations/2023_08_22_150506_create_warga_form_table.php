@@ -15,13 +15,14 @@ class CreateWargaFormTable extends Migration
     {
         Schema::create('warga_form', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id'); // ID pengguna warga yang mengisi form
+            $table->unsignedBigInteger('user_id');
             $table->string('nama');
             $table->string('alamat');
             $table->integer('umur');
-            $table->boolean('approved_by_rt')->default(false); // Status persetujuan oleh RT
-            $table->boolean('approved_by_rw')->default(false); // Status persetujuan oleh RW
-            $table->string('dokumen')->nullable(); // Nama file dokumen yang diunggah
+            $table->boolean('approved_by_rt')->default(false);
+            $table->boolean('approved_by_rw')->default(false);
+            $table->boolean('approved_kelurahan')->default(false);
+            $table->string('dokumen')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
