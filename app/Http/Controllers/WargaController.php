@@ -20,10 +20,9 @@ class WargaController extends Controller
 
      public function showForm($userId)
     {
+        $user = User::find($userId);
 
-        $users = User::where('id', $userId)->get();
-
-        return view('warga', ['userId' => $users]);
+        return view('warga', ['user' => $user]);
     }
 
     public function submitForm(Request $request)

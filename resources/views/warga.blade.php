@@ -28,6 +28,6 @@
             <!-- Add more form fields as needed -->
             <button type="submit" class="btn btn-primary mt-3">Submit</button>
         </form>
-        <a href="{{ route('form.already_filled') }}">Halaman Upload Dokumen</a>
+        <a href="{{ route('form.already_filled', ['userId' => $user->id]) }}">Halaman Upload Dokumen</a>
     </div>
 @endsection
